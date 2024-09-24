@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadística</title>
+</head>
+<body>
+    <h1>Ingresar valores de X y Y</h1>
+
+    <form method="POST">
+        <label for="new_X">Nuevo valor de X:</label>
+        <input type="text" id="new_X" name="new_X" required>
+        <br>
+        <label for="new_Y">Nuevo valor de Y:</label>
+        <input type="text" id="new_Y" name="new_Y" required>
+        <br><br>
+        <button type="submit">Agregar valores</button>
+    </form>
+
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <h2>Valores agregados</h2>
+    <ul>
+        <li>X: {{ X_values }}</li>
+        <li>Y: {{ Y_values }}</li>
+    </ul>
+
+    {% if datos_tabla %}
+    <h2>Resultados</h2>
+    <table>
+        <tr>
+            <th>X</th>
+            <th>Y</th>
+            <th>X²</th>
+            <th>Y²</th>
+            <th>XY</th>
+        </tr>
+        {% for dato in datos_tabla %}
+        <tr>
+            <td>{{ dato.X }}</td>
+            <td>{{ dato.Y }}</td>
+            <td>{{ dato.X2 }}</td>
+            <td>{{ dato.Y2 }}</td>
+            <td>{{ dato.XY }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Sumatorias</h3>
+    <ul>
+        <li>Suma de X: {{ sum_X }}</li>
+        <li>Suma de Y: {{ sum_Y }}</li>
+        <li>Suma de X²: {{ sum_X2 }}</li>
+        <li>Suma de Y²: {{ sum_Y2 }}</li>
+        <li>Suma de XY: {{ sum_XY }}</li>
+    </ul>
+
+    <h3>Resultados de análisis</h3>
+    <ul>
+        <li>r²: {{ r2 }}</li>
+        <li>F: {{ F }}</li>
+        <li>SS_reg: {{ SS_reg }}</li>
+        <li>SS_res: {{ SS_res }}</li>
+        <li>t_estadística: {{ t_estadistica }}</li>
+        <li>t_crítico: {{ t_critico }}</li>
+        <li>p_value: {{ p_value }}</li>
+        <li>Intervalo de confianza para β₁: ({{ intervalo_inf }}, {{ intervalo_sup }})</li>
+    </ul>
+    {% endif %}
+</body>
+</html>
